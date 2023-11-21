@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body {
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column; /* Alinhe os elementos em uma coluna */
+        justify-content: flex-start; /* Alinhe o conteúdo no topo da página */
+        align-items: center; /* Centralize o conteúdo horizontalmente */
+        height: 100vh; /* Ocupa toda a altura da tela */
+    }
+
+    /* Estilize o texto com CSS */
+    #texto {
+        color: #ff0000;
+        font-size: 70px;
+        text-align: center;
+    }
+
+    /* Estilize o contêiner do cartão com CSS */
+    .cartao-container {
+        display: flex;
+        flex-direction: column; /* Alinhe os elementos em uma coluna */
+        justify-content: center; /* Centralize o conteúdo horizontalmente */
+        align-items: center; /* Centralize o conteúdo verticalmente */
+        height: 100%; /* Ocupa toda a altura disponível */
+    }
+
+    /* Estilize o cartão com CSS */
+    .cartao {
+        width: 300px;
+        height: 200px;
+        background-color: #050000; /* Cor de fundo do cartão */
+        border-radius: 10px; /* Cantos arredondados */
+        box-shadow: 0 4px 8px 0 rgba(255, 254, 254, 0.2); /* Sombra para o cartão */
+        text-align: center; /* Centraliza o conteúdo horizontalmente */
+        padding: 20px;
+        color: #ffffff; /* Cor do texto no cartão */
+        margin-bottom: 20px; /* Adicione margem inferior para separar o botão */
+    }
+
+    /* Estilize o botão com CSS */
+    .botao {
+        width: 100%; /* Largura igual à largura do cartão */
+        background-color: #000000; /* Cor de fundo do botão */
+        color: #f8f8f8; /* Cor do texto no botão */
+        padding: 10px 1px; /* Tamanho do botão */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center; /* Centralize o texto horizontalmente no botão */
+    }
+</style>
+</head>
+<body>
+  
+  <div id="texto"></div>
+  <div class="cartao-container">
+    <div class="cartao">
+      <h2>Quem sou eu?</h2>
+      <p>Olá, sou o Leonardo, frequento o 1º ano de programação informática na Escola Profissional do Fundão, sou um programador iniciante. <p>Programação é o Futuro!</p></p>
+    </div>
+    <a class="botao" href="https://github.com/LeonardoPereiraMendes">GitHub</a>
+  </div>
+
+  <script>
+    const textoElemento = document.getElementById("texto");
+    const textos = ["Hello, I'm Leonardo", "I'm a developer"];
+    let currentIndex = 0;
+
+    function digitarTexto() {
+      let texto = textos[currentIndex];
+      let i = 0;
+      const escrever = () => {
+        if (i < texto.length) {
+          textoElemento.innerHTML += texto.charAt(i);
+          i++;
+          setTimeout(escrever, 100);
+        } else {
+          setTimeout(() => {
+            apagarTexto();
+          }, 2000); // Tempo de pausa antes de apagar (2 segundos)
+        }
+      };
+      escrever();
+    }
+
+    function apagarTexto() {
+      let texto = textoElemento.innerHTML;
+      let i = texto.length;
+      const apagar = () => {
+        if (i >= 0) {
+          textoElemento.innerHTML = texto.slice(0, i);
+          i--;
+          setTimeout(apagar, 100);
+        } else {
+          currentIndex = (currentIndex + 1) % textos.length;
+          setTimeout(() => {
+            digitarTexto();
+          }, 2000); // Tempo de pausa antes de digitar o próximo texto (2 segundos)
+        }
+      };
+      apagar();
+    }
+
+    digitarTexto();
+  </script>
+</body>
+</html>
